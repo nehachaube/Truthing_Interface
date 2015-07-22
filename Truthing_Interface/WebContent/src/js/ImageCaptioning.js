@@ -1,24 +1,4 @@
-<html>
-<h2>Your seat reservations</h2>
-
-<table>
-    <tbody data-bind="foreach: images">
-        <tr>
-            <td><img data-bind="attr:{src:source}" height="42" width="42"></td>
-            <td><input data-bind="value: caption" /></td>
-        </tr>    
-    </tbody>
-</table>
-
-<button data-bind="click: save">Save</button>
-<button data-bind="click: download">Download as CSV</button>
-<script type='text/javascript' src='../js/jquery.js'></script>
-<script type='text/javascript' src='../js/knockout-3.3.0.js'></script>
-<script type="text/javascript">
-
-
-
-	function imageData(source, caption) {
+function imageData(source, caption) {
 	    var self = this;
 	    self.source = source;
 		self.caption = caption;
@@ -50,9 +30,10 @@
 	    fileExt[0]=".png";
 	    fileExt[1]=".jpg";
 	    fileExt[2]=".gif";
+	    var url = window.location.search.substring(1).split("=")[1];
 	    $.ajax({
 	    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-	    url: '../images/',
+	    url: url,
 	    success: function (data) {
 	       $(data).find("a:contains(" + fileExt[0] + "),a:contains(" + fileExt[1] + "),a:contains(" + fileExt[2] + ")").each(function () {
 	           var filename = this.href;
@@ -63,5 +44,3 @@
 	}
 
 	ko.applyBindings(new viewModel());
-</script>
-</html>

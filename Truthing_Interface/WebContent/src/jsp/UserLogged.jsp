@@ -11,7 +11,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/UserLogged.css">
   	<script type='text/javascript' src='../js/jquery.js'></script>
   	<script text="text/javascript" src="../js/UserLogged.js"></script>
-  	<title>   User Logged Successfully   </title>
+  	<title>Home</title>
   </head>
   <body class="main">
   	<h1>Welcome</h1>

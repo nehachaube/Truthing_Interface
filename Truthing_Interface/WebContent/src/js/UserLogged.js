@@ -9,6 +9,6 @@ $(document).ready(function(){
     	$('.inputDir').css('visibility','visible');
     });
     $('.inputDir').change(function(){
-    	alert("blah");
+    	window.location.href = "../jsp/ImageCaptioning.jsp?path="+this.value;
     });
 });
