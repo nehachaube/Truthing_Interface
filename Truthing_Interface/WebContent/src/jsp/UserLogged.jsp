@@ -14,7 +14,12 @@
   	<title>Home</title>
   </head>
   <body class="main">
-  	<h1>Welcome</h1>
+  	<%
+  	String user = null;
+  	if(session.getAttribute("currentSessionUser") == null){
+  	    response.sendRedirect("UserLogged.jsp");
+  	}else user = (String) session.getAttribute("currentSessionUser"); %>
+  	<h1>Welcome <%=user %></h1>
   	<div class="mainDiv">
 	  	<div class="tile" id="page1"><p>Manual</p><input class="inputDir" placeholder="Enter images directory"/></div>
 	  	<div class="tile">Commit</div>

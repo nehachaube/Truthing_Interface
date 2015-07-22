@@ -2,6 +2,7 @@
     <wb-module deploy-name="Truthing_Interface">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/lib"/>
         <property name="context-root" value="Truthing_Interface"/>
         <property name="java-output-path" value="/Truthing_Interface/build/classes"/>
     </wb-module>

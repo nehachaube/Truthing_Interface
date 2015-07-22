@@ -3,6 +3,13 @@ public class UserBean {
 
 	String UserName=null;
 	String Password=null;
+	int UserId;
+	public int getUserId() {
+		return UserId;
+	}
+	public void setUserId(int userId) {
+		UserId = userId;
+	}
 	boolean Valid;
 	public boolean isValid() {
 		return Valid;

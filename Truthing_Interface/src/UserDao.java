@@ -61,9 +61,10 @@ import java.sql.*;
          else if (more)
          {
             String name = rs.getString("name");
- 
+            int userid=rs.getInt("id");
             System.out.println("Welcome " + name);
             bean.setUserName(name);
+            bean.setUserId(userid);
             bean.setValid(true);
          }
       }
