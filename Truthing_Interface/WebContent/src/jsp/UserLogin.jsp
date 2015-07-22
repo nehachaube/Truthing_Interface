@@ -17,7 +17,7 @@
     <input type="password" placeholder="Password" name="pw" />
     <input type="submit" value="submit">
     </form>
-    <a href="Register.jsp"> <p> Don't have an account? Register </p></a>
+    <a href="RegisterBootStrap.jsp"> <p> Don't have an account? Register </p></a>
   </div>
 </div>
 <div class="col-lg-5 col-md-push-1">
