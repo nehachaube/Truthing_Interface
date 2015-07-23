@@ -21,7 +21,7 @@
   	}else user = (String) session.getAttribute("currentSessionUser"); %>
   	<h1>Welcome <%=user %></h1>
   	<div class="mainDiv">
-	  	<div class="tile" id="page1"><p>Manual</p><input class="inputDir" placeholder="Enter images directory"/></div>
+	  	<div class="tile" id="page1"><p>Manual</p></div>
 	  	<div class="tile">Commit</div>
 	  	<div class="tile">Commit</div>
   	</div>

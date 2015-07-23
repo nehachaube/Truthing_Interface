@@ -29,7 +29,7 @@ try
           HttpSession session = request.getSession(true);
           session.setAttribute("currentSessionUser",user.getUserName());
           session.setAttribute("currentSessionUserId",user.getUserId());
-          response.sendRedirect("UserLogged.jsp"); //logged-in page
+          response.sendRedirect("src/jsp/UserLogged.jsp"); //logged-in page
      }
  
      else

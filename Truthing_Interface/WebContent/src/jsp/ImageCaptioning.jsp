@@ -13,6 +13,7 @@
   	<title>   User Logged Successfully   </title>
   </head>
   <body class="main">
+  <input class="inputDir" placeholder="Enter images directory" type="file" name="files[]" multiple id="files"/>
   	<table>
   		<tbody data-bind="foreach: images">
   			<tr>
