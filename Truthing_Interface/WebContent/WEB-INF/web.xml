@@ -10,12 +10,12 @@
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>GetFolderContents</servlet-name>
-        <servlet-class>GetFolderContents</servlet-class>
+        <servlet-name>ImageCaptionServlet</servlet-name>
+        <servlet-class>ImageCaptionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>GetFolderContents</servlet-name>
-        <url-pattern>/GetFolderContents</url-pattern>
+        <servlet-name>ImageCaptionServlet</servlet-name>
+        <url-pattern>/ImageCaptionServlet</url-pattern>
     </servlet-mapping>
      <servlet>
         <servlet-name>RegisterServlet</servlet-name>

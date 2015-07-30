@@ -9,7 +9,22 @@ function viewModel() {
     var that = this;   
     jsInstance.images = ko.observableArray([]);
     that.save = function(){
-    	
+    	data = [];
+    	for(var i = 0; i < jsInstance.images().length; i++){
+    		data[i] = {};
+    		data[i] = {"name":jsInstance.files[i].name, "caption":jsInstance.images()[i].caption};
+    	}
+    	$.ajax({
+    		data: {
+    				loadProds: 1,
+    				imgcaption:JSON.stringify(data)
+    		},
+    		dataType: 'JSON',
+    		url: "../../ImageCaptionServlet",
+    		success: function (data) {
+    			
+    		}     
+    	});
     }
 	that.download = function() {
 		var csvRows = [['source','caption']];
@@ -27,28 +42,14 @@ function viewModel() {
 		//document.body.appendChild(a);
 		a.click();
 	}
-	var fileExt = {};
-	fileExt[0]=".png";
-	fileExt[1]=".jpg";
-	fileExt[2]=".gif";
-	var url = window.location.search.substring(1).split("=")[1];
-	$.ajax({
-		//This will retrieve the contents of the folder if the folder is configured as 'browsable'
-		data: url,
-		url: "../../GetFolderContents",
-		success: function (data) {
-			data = data.split("\t");
-			jsInstance.pathList = data;
-		}     
-	});
 }
 
 ko.applyBindings(new viewModel());
 
 function handleFileSelect(evt) {
 	var that = this;
-    var files = evt.target.files; 
-    for (var i = 0, f; f = files[i]; i++) {
+    jsInstance.files = evt.target.files; 
+    for (var i = 0, f; f = jsInstance.files[i]; i++) {
       if (!f.type.match('image.*')) {
         continue;
       }
