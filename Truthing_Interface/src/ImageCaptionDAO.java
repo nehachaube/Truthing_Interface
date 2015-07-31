@@ -43,8 +43,10 @@ public class ImageCaptionDAO {
 		String imgurl=bean.getImgurl();
 		String imgcaption=bean.getImgcaption();
 		
-		String insUpQuery="IF EXISTS(select * from truthinginterface.caption where userid="+userid+" and imgurl="+imgurl+") update truthinginterface.caption set caption="+imgcaption+" where "
-				+ "userid="+userid+" and imgurl="+imgurl+" ELSE insert into truthinginterface.caption(imgurl,caption,userid,username) values('"+imgurl+"','"+imgcaption+"','"+userid+"','"+username+"'";
+		/*String insUpQuery="IF EXISTS(select * from truthinginterface.caption where userid="+userid+" and imgurl='"+imgurl+"') update truthinginterface.caption set caption='"+imgcaption+"' where "
+				+ "userid="+userid+" and imgurl='"+imgurl+"' ELSE insert into truthinginterface.caption(imgurl,caption,userid,username) values('"+imgurl+"','"+imgcaption+"',"+userid+",'"+username+"')";*/
+		String insUpQuery="INSERT INTO truthinginterface.caption(imgurl,caption,userid,username) VALUES ('"+imgurl+"','"+imgcaption+"',"+userid+",'"+username+"') ON DUPLICATE KEY UPDATE caption = '"+imgcaption+"'";
+		System.out.println(insUpQuery);
 		ps = con.prepareStatement(insUpQuery);
 		ps.executeUpdate();
 		}
