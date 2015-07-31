@@ -1,3 +1,7 @@
+width = $(window).width();
+height = $(window).height();
+$('html').css('width', width);
+$('html').css('height', height*0.90);
 var jsInstance = this;
 function imageData(source, caption) {
     var that = this;
@@ -22,7 +26,7 @@ function viewModel() {
     		dataType: 'JSON',
     		url: "../../ImageCaptionServlet",
     		success: function (data) {
-    			
+    			debugger;
     		}     
     	});
     }
@@ -49,6 +53,7 @@ ko.applyBindings(new viewModel());
 function handleFileSelect(evt) {
 	var that = this;
     jsInstance.files = evt.target.files; 
+    $(".overlay").css("visibility","hidden");
     for (var i = 0, f; f = jsInstance.files[i]; i++) {
       if (!f.type.match('image.*')) {
         continue;

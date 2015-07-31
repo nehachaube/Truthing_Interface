@@ -19,11 +19,11 @@
   	if(session.getAttribute("currentSessionUser") == null){
   	    response.sendRedirect("UserLogged.jsp");
   	}else user = (String) session.getAttribute("currentSessionUser"); %>
-  	<h1>Welcome <%=user %></h1>
+  	<div class="heading">Welcome <%=user %></div>
   	<div class="mainDiv">
-	  	<div class="tile" id="page1"><p>Manual</p></div>
-	  	<div class="tile">Commit</div>
-	  	<div class="tile">Commit</div>
+	  	<div class="tile" id="page1"><p>Image Captioning</p></div>
+	  	<div class="tile"><p>In Progress</p></div>
+	  	<div class="tile"><p>In progress</p></div>
   	</div>
   </body>
 </html>
