@@ -57,9 +57,10 @@ public class ImageCaptionServlet extends HttpServlet{
 			     }
 			     bean= ImageCaptionDAO.captionupdate(bean);
 			 }
+			 request.setAttribute("success", "Saved!");
 		}
 	 catch (SQLException | JSONException e) {
-			// TODO Auto-generated catch block
+		 request.setAttribute("errorindb", "Could not Save");
 			e.printStackTrace();
 		}
 	         

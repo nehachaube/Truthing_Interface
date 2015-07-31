@@ -41,7 +41,7 @@ import java.sql.*;
  
       // "System.out.println" prints in the console; Normally used to trace the process
       System.out.println("Your user name is " + username);
-      System.out.println("Your password is " + password);
+      //System.out.println("Your password is " + password);
       System.out.println("Query: "+searchQuery);
  
       try

@@ -37,7 +37,7 @@ try
           //response.sendRedirect("invalidLogin.jsp"); //error page
           System.err.println("Could not login");
 			request.setAttribute("errorMessage", "Login Failed!");
-			RequestDispatcher rd = request.getRequestDispatcher("/UserLogin.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("src/jsp/UserLogin.jsp");
           rd.forward(request, response); 
      }
 }
