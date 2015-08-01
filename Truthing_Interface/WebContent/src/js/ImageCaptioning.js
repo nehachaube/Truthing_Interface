@@ -91,7 +91,7 @@ function handleFileSelect(evt) {
 		method:"POST",
 		url: "../../ImageCaptionUserServlet",
 		success: function (response) {
-			alert("save successful");
+			alert("retrieve successful");
 		},
 		error: function(response){
 			if(response.status == 200){

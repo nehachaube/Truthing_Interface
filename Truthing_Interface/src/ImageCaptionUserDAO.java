@@ -56,6 +56,9 @@ public class ImageCaptionUserDAO {
              bean1.setImgurl(rs.getString("imgurl"));
              bean1.setImgcaption(rs.getString("caption"));
              img.add(bean1);
+             System.out.println(bean1.getImgcaption());
+             System.out.println(bean1.getImgurl());
+             
          }
 		return img;
 		}

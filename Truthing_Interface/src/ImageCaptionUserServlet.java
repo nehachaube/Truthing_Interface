@@ -1,6 +1,7 @@
 /*Created By:Neha Chaube*/
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class ImageCaptionUserServlet
@@ -39,12 +42,20 @@ public class ImageCaptionUserServlet extends HttpServlet {
 		 bean.setCurrentUserId(userid);
 		 bean.setCurrentUserName(username);
 		 bean.setImgurl(request.getParameter("imgcaptionstring"));
-		 System.out.println(bean.getImgurl());
+		 System.out.println("Images from front end "+bean.getImgurl());
 		 try {
+			 System.out.println("Entering to print list of captions found");
 			List<ImageCaptionBean> returncaption= ImageCaptionUserDAO.imagecaptionuserdata(bean);
-			request.setAttribute("returncaptions", returncaption);
+			System.out.println("Printing the bean"+returncaption);
+			//request.setAttribute("returncaptions", returncaption);
+			//PrintWriter outPrintWriter = response.getWriter();
+			 //outPrintWriter.write("returncaption");
+			 Gson gson = new Gson();
+			 response.getWriter().println(gson.toJson(returncaption));
 		} catch (SQLException e) {
 			request.setAttribute("errorindb","Could not upload!");
+			PrintWriter outPrintWriter = response.getWriter();
+			 outPrintWriter.write("errorindb");
 			e.printStackTrace();
 		}
 	}

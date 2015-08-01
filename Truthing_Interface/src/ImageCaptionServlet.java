@@ -1,13 +1,16 @@
 /*Created By:Neha Chaube*/
+import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 //import net.sf.json.JSONObject;
 import org.json.*;
 
@@ -58,9 +61,14 @@ public class ImageCaptionServlet extends HttpServlet{
 			     bean= ImageCaptionDAO.captionupdate(bean);
 			 }
 			 request.setAttribute("success", "Saved!");
+			 PrintWriter out = response.getWriter();
+			 out.write("success");
+			 
 		}
 	 catch (SQLException | JSONException e) {
 		 request.setAttribute("errorindb", "Could not Save");
+		 PrintWriter out = response.getWriter();
+		 out.write("Could not save!");
 			e.printStackTrace();
 		}
 	         
