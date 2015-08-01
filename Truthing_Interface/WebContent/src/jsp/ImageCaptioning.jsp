@@ -11,7 +11,7 @@
   	<link rel="stylesheet" type="text/css" href="../css/ImageCaptioning.css">
   	<script type='text/javascript' src='../js/jquery.js'></script>
   	<script type='text/javascript' src='../js/knockout-3.3.0.js'></script>
-  	<title>   User Logged Successfully   </title>
+  	<title>   Image Captioning   </title>
   </head>
   <body class="imagecaption">
   	<div class="overlay">
@@ -22,7 +22,11 @@
   	if(session.getAttribute("currentSessionUser") == null){
   	    response.sendRedirect("UserLogged.jsp");
   	}else user = (String) session.getAttribute("currentSessionUser"); %>
-  	<div class="heading">Welcome <%=user %></div>
+  	<div class="heading">
+  		<div class="headingtext">Welcome <%=user %></div>
+  		<button class="button" data-bind="click: load">Load images</button>
+  		<button class="button" data-bind="click: logout">Log out</button>
+  	</div>
   	<div class="layout">
 	  	<div data-bind="foreach: images">
 	  		<div class="tiles">

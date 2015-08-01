@@ -25,9 +25,16 @@ function viewModel() {
     		},
     		dataType: 'JSON',
     		url: "../../ImageCaptionServlet",
-    		success: function (data) {
-    			debugger;
-    		}     
+    		success: function (response) {
+    			if(response.status == 200){
+    				alert("save successful");
+    			}
+    		},
+    		error: function(response){
+    			if(response.status == 200){
+    				alert("save successful");
+    			}
+    		}
     	});
     }
 	that.download = function() {
@@ -45,6 +52,22 @@ function viewModel() {
 		
 		//document.body.appendChild(a);
 		a.click();
+	}
+	
+	that.load = function(){
+		$(".overlay").css("visibility","visible");
+	}
+	that.logout = function(){
+		$.ajax({
+    		method:"POST",
+    		url: "../../LoginServlet",
+    		success: function (response) {
+    			window.location.href = "../jsp/UserLogin.jsp";
+    		},
+    		error: function(response){
+    			alert("logout error");
+    		}
+    	});
 	}
 }
 
