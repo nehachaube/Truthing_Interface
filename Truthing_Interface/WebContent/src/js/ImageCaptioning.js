@@ -3,9 +3,10 @@ height = $(window).height();
 $('html').css('width', width);
 $('html').css('height', height*0.90);
 var jsInstance = this;
-function imageData(source, caption) {
+function imageData(source, name, caption) {
     var that = this;
     that.source = source;
+    that.name = name;
 	that.caption = caption;
 }
 
@@ -13,10 +14,10 @@ function viewModel() {
     var that = this;   
     jsInstance.images = ko.observableArray([]);
     that.save = function(){
-    	data = [];
+    	var data = [];
     	for(var i = 0; i < jsInstance.images().length; i++){
     		data[i] = {};
-    		data[i] = {"name":jsInstance.files[i].name, "caption":jsInstance.images()[i].caption};
+    		data[i] = {"name":jsInstance.images()[i].name, "caption":jsInstance.images()[i].caption};
     	}
     	$.ajax({
     		data: {
@@ -38,10 +39,10 @@ function viewModel() {
     	});
     }
 	that.download = function() {
-		var csvRows = [['source','caption']];
+		var csvRows = [];
 		var images = jsInstance.images();
 		for(var i=1; i < images.length; i++){
-			csvRows.push([images[i].source,images[i].caption]);
+			csvRows.push([images[i].name,images[i].caption]);
 		}
 		
 		var csvString = csvRows.join("%0A");
@@ -59,7 +60,7 @@ function viewModel() {
 	}
 	that.logout = function(){
 		$.ajax({
-    		method:"POST",
+			method:"POST",
     		url: "../../LoginServlet",
     		success: function (response) {
     			window.location.href = "../jsp/UserLogin.jsp";
@@ -88,10 +89,30 @@ function handleFileSelect(evt) {
 			loadProds: 1,
 			imgcaptionstring:s
     	},
-		method:"POST",
 		url: "../../ImageCaptionUserServlet",
 		success: function (response) {
-			alert("retrieve successful");
+			jsInstance.dataDB = eval(response);
+			for (var i = 0, f; f = jsInstance.files[i]; i++) {
+			      if (!f.type.match('image.*')) {
+			        continue;
+			      }
+
+			      var reader = new FileReader();
+			      reader.onload = (function(theFile) {
+			        return function(e) {
+			        	var i = 0;
+			        	for(i = 0; i < jsInstance.dataDB; i++){
+			        		if(jsInstance.dataDB[i].imgcaption == e.target.result)
+			        			break;
+			        	}
+			        	if(i < jsInstance.dataDB.length)
+			        		jsInstance.images.push(new imageData(e.target.result,theFile.name,jsInstance.dataDB[i].imgcaption));
+			        	else
+			        		jsInstance.images.push(new imageData(e.target.result,theFile.name,""));
+			        };
+			      })(f);
+			      reader.readAsDataURL(f);
+			    }
 		},
 		error: function(response){
 			if(response.status == 200){
@@ -99,20 +120,7 @@ function handleFileSelect(evt) {
 			}
 		}
 	});
-    for (var i = 0, f; f = jsInstance.files[i]; i++) {
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      var reader = new FileReader();
-      reader.onload = (function(theFile) {
-        return function(e) {
-        	
-        	jsInstance.images.push(new imageData(e.target.result,""));
-        };
-      })(f);
-      reader.readAsDataURL(f);
-    }
+    
   }
 $(document).ready(function(){
 	document.getElementById('files').addEventListener('change', handleFileSelect, false);

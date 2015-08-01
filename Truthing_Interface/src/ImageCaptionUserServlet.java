@@ -31,7 +31,7 @@ public class ImageCaptionUserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//doGet(request, response);
 		
 		ImageCaptionBean bean= new ImageCaptionBean(); 
@@ -48,10 +48,11 @@ public class ImageCaptionUserServlet extends HttpServlet {
 			List<ImageCaptionBean> returncaption= ImageCaptionUserDAO.imagecaptionuserdata(bean);
 			System.out.println("Printing the bean"+returncaption);
 			//request.setAttribute("returncaptions", returncaption);
-			//PrintWriter outPrintWriter = response.getWriter();
-			 //outPrintWriter.write("returncaption");
-			 Gson gson = new Gson();
-			 response.getWriter().println(gson.toJson(returncaption));
+			Gson gson = new Gson();
+			PrintWriter outPrintWriter = response.getWriter();
+			outPrintWriter.write(gson.toJson(returncaption));
+			 //
+			 //response.getWriter().println(gson.toJson(returncaption));
 		} catch (SQLException e) {
 			request.setAttribute("errorindb","Could not upload!");
 			PrintWriter outPrintWriter = response.getWriter();

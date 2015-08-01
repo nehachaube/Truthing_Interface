@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
 		{
 			System.err.println("Could not register");
 			request.setAttribute("errorMessage", "Registration Failed!");
-			RequestDispatcher rd = request.getRequestDispatcher("/RegisterBootStrap.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("src/jsp/RegisterBootStrap.jsp");
             rd.forward(request, response); 
 		}
 	 }
