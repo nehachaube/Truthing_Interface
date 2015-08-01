@@ -77,6 +77,28 @@ function handleFileSelect(evt) {
 	var that = this;
     jsInstance.files = evt.target.files; 
     $(".overlay").css("visibility","hidden");
+    var s = "";
+    for (var i = 0, f; f = jsInstance.files[i]; i++) {
+    	s += "'"+f.name+"',";
+    }
+    s = s.substring(0,s.length-1);
+    console.log(s);
+    $.ajax({
+    	data: {
+			loadProds: 1,
+			imgcaptionstring:s
+    	},
+		method:"POST",
+		url: "../../ImageCaptionUserServlet",
+		success: function (response) {
+			alert("save successful");
+		},
+		error: function(response){
+			if(response.status == 200){
+				alert("save successful");
+			}
+		}
+	});
     for (var i = 0, f; f = jsInstance.files[i]; i++) {
       if (!f.type.match('image.*')) {
         continue;
@@ -85,6 +107,7 @@ function handleFileSelect(evt) {
       var reader = new FileReader();
       reader.onload = (function(theFile) {
         return function(e) {
+        	
         	jsInstance.images.push(new imageData(e.target.result,""));
         };
       })(f);

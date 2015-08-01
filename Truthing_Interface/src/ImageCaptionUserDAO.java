@@ -45,6 +45,7 @@ public class ImageCaptionUserDAO {
 		String imgurl=bean.getImgurl();
 		String imgcaption=bean.getImgcaption();
 		 String searchQuery = "select * from truthinginterface.caption where username='"+username+"' AND imgurl IN("+imgurl+") AND userid="+userid;
+		 System.out.println("Query "+searchQuery);
 		 stmt=con.createStatement();
          rs = stmt.executeQuery(searchQuery);
          List<ImageCaptionBean> img = new ArrayList<ImageCaptionBean>();
@@ -53,7 +54,7 @@ public class ImageCaptionUserDAO {
         	 ImageCaptionBean bean1= new ImageCaptionBean();
         	 bean1.setCurrentUserId(rs.getInt("userid"));
              bean1.setImgurl(rs.getString("imgurl"));
-             bean1.setImgcaption(rs.getString("imgcaption"));
+             bean1.setImgcaption(rs.getString("caption"));
              img.add(bean1);
          }
 		return img;

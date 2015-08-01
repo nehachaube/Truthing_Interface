@@ -39,6 +39,7 @@ public class ImageCaptionUserServlet extends HttpServlet {
 		 bean.setCurrentUserId(userid);
 		 bean.setCurrentUserName(username);
 		 bean.setImgurl(request.getParameter("imgcaptionstring"));
+		 System.out.println(bean.getImgurl());
 		 try {
 			List<ImageCaptionBean> returncaption= ImageCaptionUserDAO.imagecaptionuserdata(bean);
 			request.setAttribute("returncaptions", returncaption);
