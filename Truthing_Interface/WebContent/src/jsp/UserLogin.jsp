@@ -15,12 +15,12 @@
   <div class="form">
     <input type="text" placeholder="Username" name="un" />
     <input type="password" placeholder="Password" name="pw" />
-    <a href="RegisterBootStrap.jsp">Register</a>
     <input type="submit" value="submit">
-    </form>
-     
+    </form>   
   </div>
 </div>
+
+<a href="RegisterBootStrap.jsp">Register</a>
 <div class="col-lg-5 col-md-push-1">
             <div class="col-md-12">
                 <div class="alert alert-success">

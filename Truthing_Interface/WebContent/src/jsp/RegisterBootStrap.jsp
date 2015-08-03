@@ -63,7 +63,7 @@
                <!--   <div class="alert alert-success">
                     <strong name="msg"><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
                 </div>-->
-                <div class="alert alert-danger">
+              <!--   <div class="alert alert-danger">
                     <span class="glyphicon glyphicon-remove"></span><strong> 
 <%
     if(null!=request.getAttribute("errorMessage"))
@@ -71,7 +71,7 @@
         out.println(request.getAttribute("errorMessage"));
     }
 %>
-</strong>
+</strong>--> 
                 </div>
             </div>
         </div>

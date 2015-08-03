@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 		if(success)
 		{
 			request.setAttribute("successMessage", "Registration Successful");
-			response.sendRedirect("UserLogin.jsp");
+			response.sendRedirect("src/jsp/UserLogin.jsp");
 		}
 		else
 		{
