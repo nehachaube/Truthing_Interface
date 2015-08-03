@@ -15,6 +15,7 @@
   <div class="form">
     <input type="text" placeholder="Username" name="un" />
     <input type="password" placeholder="Password" name="pw" />
+    <a href="RegisterBootStrap.jsp">Register</a>
     <input type="submit" value="submit">
     </form>
      
