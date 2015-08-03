@@ -57,12 +57,18 @@ function viewModel() {
     			response = eval(response);
     			for(var i = 0, f; f = response[i]; i++){
     				var temp = [];
-    				var k = 0;
-    				for(var j = i+1, g; g = response[j]; j++){
+    				var k = 0, j = i+1;
+    				while(j < response.length){
+    					g = response[j];
     					if(f.imgurl == g.imgurl){
-    						temp[k++] = f.imgcaption;
     						temp[k++] = g.imgcaption;
     						response.splice(j,1);
+    					}
+    					else{
+    						j++;
+    					}
+    					if(j == response.length-1){
+    						temp[k++] = f.imgcaption;
     					}
     				}
     				
