@@ -27,13 +27,13 @@ function viewModel() {
     		dataType: 'JSON',
     		url: "../../ImageCaptionServlet",
     		success: function (response) {
-    			if(response.status == 200){
-    				alert("save successful");
-    			}
+   				alert("save successful");
+   				document.getElementById("download").disabled = false;
     		},
     		error: function(response){
     			if(response.status == 200){
     				alert("save successful");
+    				document.getElementById("download").disabled = false;
     			}
     		}
     	});
@@ -41,18 +41,55 @@ function viewModel() {
 	that.download = function() {
 		var csvRows = [];
 		var images = jsInstance.images();
-		for(var i=1; i < images.length; i++){
-			csvRows.push([images[i].name,images[i].caption]);
-		}
+		var s = "";
+	    for (var i = 0, f; f = images[i]; i++) {
+	    	s += "'"+f.name+"',";
+	    }
+	    s = s.substring(0,s.length-1);
+	    console.log(s);
+		$.ajax({
+			data: {
+				loadProds: 1,
+				imgcaptionstring:s
+	    	},
+    		url: "../../ImageCaptionDownloadServlet",
+    		success: function (response) {
+    			response = eval(response);
+    			for(var i = 0, f; f = response[i]; i++){
+    				var temp = [];
+    				var k = 0;
+    				for(var j = i+1, g; g = response[j]; j++){
+    					if(f.imgurl == g.imgurl){
+    						temp[k++] = f.imgcaption;
+    						temp[k++] = g.imgcaption;
+    						response.splice(j,1);
+    					}
+    				}
+    				
+    				if(temp.length == 0){
+    					csvRows.push([f.imgurl,f.imgcaption]);
+    				}
+    				else{
+    					csvRows.push([f.imgurl,temp]);
+    				}
+    				
+    			}
+    			var csvString = csvRows.join("%0A");
+				var a = document.createElement('a');
+				a.href = 'data:attachment/csv,' + csvString;
+				a.target = '_blank';
+				a.download = 'myFile.csv';
+				
+				//document.body.appendChild(a);
+				a.click();
+				document.getElementById("download").disabled = true;
+    		},
+    		error: function(response){
+    			debugger;
+    		}
+    	});
 		
-		var csvString = csvRows.join("%0A");
-		var a = document.createElement('a');
-		a.href = 'data:attachment/csv,' + csvString;
-		a.target = '_blank';
-		a.download = 'myFile.csv';
 		
-		//document.body.appendChild(a);
-		a.click();
 	}
 	
 	that.load = function(){
@@ -101,8 +138,8 @@ function handleFileSelect(evt) {
 			      reader.onload = (function(theFile) {
 			        return function(e) {
 			        	var i = 0;
-			        	for(i = 0; i < jsInstance.dataDB; i++){
-			        		if(jsInstance.dataDB[i].imgcaption == e.target.result)
+			        	for(i = 0; i < jsInstance.dataDB.length; i++){
+			        		if(jsInstance.dataDB[i].imgurl == theFile.name)
 			        			break;
 			        	}
 			        	if(i < jsInstance.dataDB.length)

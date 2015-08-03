@@ -36,8 +36,8 @@
 	  	</div>
   	</div>
   	<div class="footer">
-		<button data-bind="click: save" class="button">Save</button>
-		<button data-bind="click: download" class="button">Download as CSV</button>
+		<button id="save" data-bind="click: save" class="button">Save</button>
+		<button id="download" data-bind="click: download" class="button">Download as CSV</button>
 	</div>
 	<script text="text/javascript" src="../js/ImageCaptioning.js"></script>
   </body>

@@ -18,6 +18,14 @@
     <url-pattern>/ImageCaptionServlet</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ImageCaptionDownloadServlet</servlet-name>
+    <servlet-class>ImageCaptionDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageCaptionDownloadServlet</servlet-name>
+    <url-pattern>/ImageCaptionDownloadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>RegisterServlet</servlet-class>
   </servlet>
