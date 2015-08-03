@@ -9,4 +9,19 @@ $(document).ready(function(){
     }); 
 });
 
+function logout(){
+	$.ajax({
+		method:"POST",
+		url: "../../LoginServlet",
+		success: function (response) {
+			window.location.href = "../jsp/UserLogin.jsp";
+		},
+		error: function(response){
+			alert("logout error");
+		}
+	});
+}
 
+$(document).ready(function(){
+	document.getElementById("logout").onclick = logout;
+});

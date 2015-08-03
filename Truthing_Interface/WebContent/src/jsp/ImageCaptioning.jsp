@@ -24,8 +24,8 @@
   	}else user = (String) session.getAttribute("currentSessionUser"); %>
   	<div class="heading">
   		<div class="headingtext">Welcome <%=user %></div>
-  		<button class="button" data-bind="click: load">Load images</button>
   		<button class="button" data-bind="click: logout">Log out</button>
+  		<button class="button" data-bind="click: load">Load images</button>
   	</div>
   	<div class="layout">
 	  	<div data-bind="foreach: images">
@@ -36,8 +36,9 @@
 	  	</div>
   	</div>
   	<div class="footer">
+  		<button id="download" data-bind="click: download" class="button">Download as CSV</button>
 		<button id="save" data-bind="click: save" class="button">Save</button>
-		<button id="download" data-bind="click: download" class="button">Download as CSV</button>
+		
 	</div>
 	<script text="text/javascript" src="../js/ImageCaptioning.js"></script>
   </body>

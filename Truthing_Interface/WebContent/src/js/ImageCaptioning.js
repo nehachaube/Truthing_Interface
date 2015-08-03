@@ -161,4 +161,5 @@ function handleFileSelect(evt) {
   }
 $(document).ready(function(){
 	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	document.getElementById("download").disabled = true;
 });
